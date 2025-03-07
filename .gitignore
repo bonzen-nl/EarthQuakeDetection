@@ -1,0 +1,21 @@
+# PlatformIO build directory
+.pio/
+
+# VSCode settings (if using VSCode)
+.vscode/
+
+# Build output files (firmware, binaries, etc.)
+*.bin
+*.elf
+*.hex
+
+# Backup files and temporary files
+*.tmp
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Arduino related caches (if any)
+*.ino.cpp

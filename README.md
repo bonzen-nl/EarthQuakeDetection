@@ -1,6 +1,6 @@
 # Aardbevingsdetector
 
-Dit project is een voorbeeldcode voor het uitlezen van een MPU6050-sensor met een Arduino en een RTC (DS3231). De code initialiseert de MPU6050-sensor en de DS3231 RTC, en leest de accelerometerwaarden uit met een interval van 10 milliseconden (100Hz sampling). De waarden en de tijd worden via de seriële monitor weergegeven.
+Dit project is een voorbeeldcode voor het uitlezen van een MPU6050-sensor met een Arduino en een RTC (DS3231). De code initialiseert de MPU6050-sensor, de DS3231 RTC en de SD-kaartmodule, en leest de accelerometerwaarden uit met een interval van 10 milliseconden (100Hz sampling). De waarden en de tijd worden eerst in een buffer opgeslagen en periodiek naar het CSV-bestand op de SD-kaart geschreven.
 
 ## Omgevingssetup
 
@@ -8,9 +8,10 @@ Dit project is een voorbeeldcode voor het uitlezen van een MPU6050-sensor met ee
 
 - Visual Studio Code (VSCode)
 - PlatformIO IDE extensie voor VSCode
-- Arduino board
+- ESP32-WROOM-32 NodeMCU Devkit
 - MPU6050-sensor
 - DS3231 RTC
+- SD-kaartmodule
 
 ### Installatie van Visual Studio Code en PlatformIO
 
@@ -40,7 +41,9 @@ Dit project is een voorbeeldcode voor het uitlezen van een MPU6050-sensor met ee
 1. Sluit de MPU6050-sensor en de DS3231 RTC aan op de Arduino volgens de volgende verbindingen:
    - SDA op pin 32
    - SCL op pin 33
-2. Zorg ervoor dat de Arduino correct is aangesloten op uw computer via een USB-kabel.
+2. Sluit de SD-kaartmodule aan op de Arduino volgens de volgende verbindingen:
+   - CS op pin 5
+3. Zorg ervoor dat de Arduino correct is aangesloten op uw computer via een USB-kabel.
 
 ## Gebruik
 
@@ -48,6 +51,7 @@ Dit project is een voorbeeldcode voor het uitlezen van een MPU6050-sensor met ee
 2. Zorg ervoor dat de benodigde bibliotheken zijn geïnstalleerd:
    - `MPU6050_light`
    - `RTClib`
+   - `SD`
 3. Upload de code naar de Arduino door op het upload-icoon in de statusbalk van PlatformIO te klikken.
 4. Open de seriële monitor in de IDE.
 5. Stel de baudrate in op 115200.

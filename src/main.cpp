@@ -13,12 +13,15 @@
  #include <Wire.h> 
  #include <MPU6050_light.h>
  #include <RTClib.h> // Include RTC library
+ #include <SD.h> // Include SD library
  
  MPU6050 mpu(Wire); // MPU6050 object with I2C address
  RTC_DS3231 rtc; // RTC_DS3231 object
  
  unsigned long previousMillis = 0; // Tijdstempel van de vorige meting
  const long interval = 10; // Interval in milliseconden (10ms voor 100Hz sampling)
+ const int chipSelect = 5; // CS pin voor SD-kaartmodule
+ File dataFile; // Bestand voor het opslaan van gegevens
  
  void setup() { 
 	 Serial.begin(74880); // Initialiseer seriële communicatie met 115200 baud
@@ -38,35 +41,35 @@
 		 // Stel de RTC in op de compileertijd (kan je veranderen naar manuele tijd indien nodig)
 		 rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
 	 }
+	 if (!SD.begin(chipSelect)) { // Initialize SD card
+		Serial.println("SD kaart initialisatie mislukt!");
+		return;
+	  }
+	  Serial.println("SD kaart initialisatie geslaagd.");
  } 
  
  void loop() { 
 	 unsigned long currentMillis = millis(); // Huidige tijd in milliseconden
  
 	 if (currentMillis - previousMillis >= interval) { // Controleer of het interval is verstreken
-		 previousMillis = currentMillis; // Update de vorige tijdstempel
-		 mpu.update(); // Werk de sensorwaarden bij
-		 DateTime now = rtc.now(); // Haal de huidige tijd van de RTC op
+		previousMillis = currentMillis; // Update de vorige tijdstempel
+		mpu.update(); // Werk de sensorwaarden bij
+		DateTime now = rtc.now(); // Haal de huidige tijd van de RTC op
+		String dataString = ""; // String voor de data
+
+		dataString += String(now.year()) + "/" + String(now.month()) + "/" + String(now.day()) + " " + String(now.hour()) + ":" + String(now.minute()) + ":" + String(now.second());
+    	dataString += ",";
+    	dataString += String(mpu.getAccX()) + "," + String(mpu.getAccY()) + "," + String(mpu.getAccZ());
  
-		 Serial.print(now.year(), DEC); // Print het jaar
-		 Serial.print('/');
-		 Serial.print(now.month(), DEC); // Print de maand
-		 Serial.print('/');
-		 Serial.print(now.day(), DEC); // Print de dag
-		 Serial.print(" ");
-		 Serial.print(now.hour(), DEC); // Print het uur
-		 Serial.print(':');
-		 Serial.print(now.minute(), DEC); // Print de minuut
-		 Serial.print(':');
-		 Serial.print(now.second(), DEC); // Print de seconde
-		 Serial.print(" ");
- 
-		 Serial.print("ACCEL: x:"); 
-		 Serial.print(mpu.getAccX()); // Lees en print de X-accelerometerwaarde
-		 Serial.print(" y:"); 
-		 Serial.print(mpu.getAccY()); // Lees en print de Y-accelerometerwaarde
-		 Serial.print(" z:"); 
-		 Serial.print(mpu.getAccZ()); // Lees en print de Z-accelerometerwaarde
-		 Serial.println(); 
-	 }
+		dataFile = SD.open("data.txt", FILE_APPEND); // Open bestand om toe te kunnen voegen
+		if (dataFile) {
+			dataFile.println(dataString); // Ggevens toevoegen aan het bestand
+			dataFile.close(); // Bestad sluiten
+		} else {
+			Serial.println("fout bij openen van data.txt");
+		}
+
+		Serial.println(dataString); // Ook afdrukken naar de seriële monitor
+	}
+
  }

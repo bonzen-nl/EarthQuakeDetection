@@ -57,8 +57,6 @@ Dit project is een voorbeeldcode voor het uitlezen van een MPU6050-sensor met ee
 
 ### Mappen en hun functies
 
-- **.pio/**: Deze map wordt automatisch gegenereerd door PlatformIO en bevat de build-bestanden. Je hoeft je hier meestal geen zorgen over te maken.
-
 - **Hardware/**: Hier bevinden zich de fritzing project gegevens en overzichten van de gebruikte componenten.
 
 - **include/**: Hier plaats je de header-bestanden (.h) die je in je project gebruikt. Dit zijn meestal je eigen header-bestanden die je gebruikt om functies en variabelen te declareren.

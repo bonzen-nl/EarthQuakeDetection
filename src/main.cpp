@@ -14,7 +14,7 @@
  #include <MPU6050_light.h>
  #include <RTClib.h> // Include RTC library
  
- MPU6050 mpu; // MPU6050 object
+ MPU6050 mpu(Wire); // MPU6050 object with I2C address
  RTC_DS3231 rtc; // RTC_DS3231 object
  
  unsigned long previousMillis = 0; // Tijdstempel van de vorige meting

@@ -8,12 +8,11 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "E:/Projecten/Aardbevingsdetector/include",
                 "E:/Projecten/Aardbevingsdetector/src",
+                "E:/Projecten/Aardbevingsdetector/.pio/libdeps/nodemcu-32s/MPU6050_light/src",
                 "E:/Projecten/Aardbevingsdetector/.pio/libdeps/nodemcu-32s/RTClib/src",
                 "E:/Projecten/Aardbevingsdetector/.pio/libdeps/nodemcu-32s/Adafruit BusIO",
                 "C:/Users/ibob3/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
-                "E:/Projecten/Aardbevingsdetector/.pio/libdeps/nodemcu-32s/MPU6050_light/src",
                 "C:/Users/ibob3/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                 "C:/Users/ibob3/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include",
                 "C:/Users/ibob3/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include",
@@ -242,12 +241,11 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "E:/Projecten/Aardbevingsdetector/include",
                     "E:/Projecten/Aardbevingsdetector/src",
+                    "E:/Projecten/Aardbevingsdetector/.pio/libdeps/nodemcu-32s/MPU6050_light/src",
                     "E:/Projecten/Aardbevingsdetector/.pio/libdeps/nodemcu-32s/RTClib/src",
                     "E:/Projecten/Aardbevingsdetector/.pio/libdeps/nodemcu-32s/Adafruit BusIO",
                     "C:/Users/ibob3/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
-                    "E:/Projecten/Aardbevingsdetector/.pio/libdeps/nodemcu-32s/MPU6050_light/src",
                     "C:/Users/ibob3/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                     "C:/Users/ibob3/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include",
                     "C:/Users/ibob3/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include",
